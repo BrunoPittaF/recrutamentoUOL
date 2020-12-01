@@ -1,14 +1,13 @@
 import React from 'react';
-import Home from './Pages/Home';
 import {GlobalStyle} from './Assets/styles/global';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Routes from './routes';
 
 
 
 function App() {
   return (
     <div className="App">
-      <Home/>
+      <Routes/>
       <GlobalStyle/>
     </div>
   );

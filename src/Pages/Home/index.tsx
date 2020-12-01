@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
+import Box from "../../components/Box";
 import api from "../../services/api";
-import { Header, SearchBar } from "./styles";
+import { Header, SearchBar, Container } from "./styles";
+import { Link } from "react-router-dom";
 
 interface IUser {
   login: string;
@@ -9,6 +10,8 @@ interface IUser {
   url: string;
   id: string;
   repos_url: string;
+  organizations_url: string;
+  type: string;
 }
 
 const Home: React.FC = () => {
@@ -40,13 +43,22 @@ const Home: React.FC = () => {
 
         {users.map((user) => {
           return (
-            <div className="box" key={user.id}>
-              <h1>{user.login}</h1>
+            <Box key={user.id}>
+              <picture>
+                <img src={user.avatar_url} alt="" />
+              </picture>
 
-              <p>{user.url}</p>
-
-              <span>{user.repos_url}</span>
-            </div>
+              <figcaption className="user-info">
+                <h1>{user.login}</h1>
+                <div className="data-info">
+                <p>Profile: <span>{user.url}</span></p>
+                <p>Repository: <span>{user.repos_url}</span></p>
+                <p>Orgs: <span>{user.organizations_url}</span></p>
+                <p>Type: <span>{user.type}</span></p>  
+                <Link to={`/${user.login}`}>Página do usuário </Link>             
+                </div>                
+              </figcaption>
+            </Box>
           );
         })}
       </Container>

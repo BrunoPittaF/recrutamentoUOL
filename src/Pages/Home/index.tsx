@@ -1,38 +1,65 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import Box from "../../components/Box";
 import api from "../../services/api";
-import { Header, SearchBar, Container } from "./styles";
-import { Link } from "react-router-dom";
+import { SearchBar} from "./styles";
+import { Link} from "react-router-dom";
+import { Container } from '../../Assets/styles/global';
+import Header from "../../components/Header";
+import { IUser } from '../../interfaces';
 
-interface IUser {
-  login: string;
-  avatar_url: any;
-  url: string;
-  id: string;
-  repos_url: string;
-  organizations_url: string;
-  type: string;
-}
 
 const Home: React.FC = () => {
   const [search, setSearch] = useState("");
   const [users, setUsers] = useState<IUser[]>([]);
+  const [pages, setPages] = useState(0);
+
+  function handlePageChanging(id: number) {
+    setPages(id);
+  }
 
   useEffect(() => {
-    api.get("/users").then((response) => {
-      //console.log(response.data);
+    async function loadUsers(): Promise<void> {
+      const response = await api.get("/users", {
+        params: {
+          q: search,
+          page: 1,
+        },
+      });
       setUsers(response.data);
-    });
-  }, []);
+    }
+    loadUsers();
+  }, [pages, search]);
+
+  async function handleFormSubmit(event: FormEvent): Promise<void> {
+    try {
+      event.preventDefault();
+      setPages(0);
+
+      const response = await api.get("/users", {
+        params: {
+          q: search,
+          page: 1,
+        },
+      });
+
+      if (!response.data) {
+        console.log("nada");
+      }
+
+      setUsers(response.data);
+      setSearch("");
+    } catch (error) {
+      console.log(error);
+      alert("dnv");
+    }
+  }
 
   return (
     <>
-      <Header>
-        <h1>Bem vindo a Home!</h1>
-      </Header>
+     <Header/>
 
       <Container>
-        <SearchBar>
+        <SearchBar onSubmit={handleFormSubmit}>
           <input
             type="text"
             value={search}
@@ -41,26 +68,42 @@ const Home: React.FC = () => {
           />
         </SearchBar>
 
-        {users.map((user) => {
-          return (
-            <Box key={user.id}>
-              <picture>
-                <img src={user.avatar_url} alt="" />
-              </picture>
+        {users.slice(pages * 5, pages * 5 + 5).map(user => (
+          <Box key={user.id}>
+            <picture>
+              <img src={user.avatar_url} alt="" />
+            </picture>
 
-              <figcaption className="user-info">
-                <h1>{user.login}</h1>
-                <div className="data-info">
-                <p>Profile: <span>{user.url}</span></p>
-                <p>Repository: <span>{user.repos_url}</span></p>
-                <p>Orgs: <span>{user.organizations_url}</span></p>
-                <p>Type: <span>{user.type}</span></p>  
-                <Link to={`/${user.login}`}>Página do usuário </Link>             
-                </div>                
-              </figcaption>
-            </Box>
-          );
-        })}
+            <figcaption className="user-info">
+              <h1>{user.login}</h1>
+              <div className="data-info">
+                <p>
+                  Profile: <span>{user.url}</span>
+                </p>
+                <p>
+                  Repository: <span>{user.repos_url}</span>
+                </p>
+                <p>
+                  Orgs: <span>{user.organizations_url}</span>
+                </p>
+                <p>
+                  Type: <span>{user.type}</span>
+                </p>
+                <Link to={`/${user.login}`} >Página do usuário </Link>
+              </div>
+            </figcaption>
+          </Box>
+        ))}
+        {
+        users.filter((_, idx) => idx % 5 === 0)
+        .map((_, idx) => (
+          <button key={idx} type="button" onClick={() => handlePageChanging(idx)}>
+            {idx + 1}
+          </button>
+        ))
+
+
+        }
       </Container>
     </>
   );

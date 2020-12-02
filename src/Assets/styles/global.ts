@@ -1,6 +1,6 @@
 import colors from './colors.json';
 import {createGlobalStyle} from 'styled-components';
-
+import styled  from "styled-components";
 
 export const GlobalStyle= createGlobalStyle`
 * {
@@ -16,4 +16,13 @@ html,body{
 body{
     background: ${colors.background}
 }
-`
+`;
+
+
+export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+`;

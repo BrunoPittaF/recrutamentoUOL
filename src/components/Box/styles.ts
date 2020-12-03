@@ -15,6 +15,7 @@ export const UserBox = styled.figure`
       }
     img {
       width: 280px;
+      height: 100%;
       @media screen and (max-width: 768px) {
         width: 100%;
         height: 320px;

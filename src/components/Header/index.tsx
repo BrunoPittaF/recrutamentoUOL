@@ -5,7 +5,7 @@ import { HeaderBar } from './styles';
 const Header: React.FC = () => {
   return (
     <HeaderBar>
-        <h1>Bem vindo a Home!</h1>
+        <h1>Bem vindo!</h1>
     </HeaderBar>
     );
 }

@@ -21,7 +21,7 @@ const Home: React.FC = () => {
     async function loadUsers(): Promise<void> {
       const response = await api.get("/users", {
         params: {
-          q: search,
+          token: 'a09241048a6a34fdd23ffc7f98608ffbcf80ff45',
           page: 1,
         },
       });
@@ -35,8 +35,9 @@ const Home: React.FC = () => {
       event.preventDefault();
       setPages(0);
 
-      const response = await api.get("/users", {
+      const response = await api.get("/search/users", {
         params: {
+          token: 'a09241048a6a34fdd23ffc7f98608ffbcf80ff45',
           q: search,
           page: 1,
         },
@@ -46,11 +47,10 @@ const Home: React.FC = () => {
         console.log("nada");
       }
 
-      setUsers(response.data);
+      setUsers(response.data.items);
       setSearch("");
     } catch (error) {
       console.log(error);
-      alert("dnv");
     }
   }
 
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
             type="text"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Digite para buscar o usuário"
+            placeholder="Digite e aperte 'enter' para buscar o usuário"
           />
         </SearchBar>
 

@@ -1,7 +1,7 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import Box from "../../components/Box";
 import api from "../../services/api";
-import { SearchBar} from "./styles";
+import { SearchBar, PagesButton} from "./styles";
 import { Link} from "react-router-dom";
 import { Container } from '../../Assets/styles/global';
 import Header from "../../components/Header";
@@ -16,19 +16,6 @@ const Home: React.FC = () => {
   function handlePageChanging(id: number) {
     setPages(id);
   }
-
-  useEffect(() => {
-    async function loadUsers(): Promise<void> {
-      const response = await api.get("/users", {
-        params: {
-          token: 'a09241048a6a34fdd23ffc7f98608ffbcf80ff45',
-          page: 1,
-        },
-      });
-      setUsers(response.data);
-    }
-    loadUsers();
-  }, [pages, search]);
 
   async function handleFormSubmit(event: FormEvent): Promise<void> {
     try {
@@ -45,8 +32,7 @@ const Home: React.FC = () => {
 
       if (!response.data) {
         console.log("nada");
-      }
-
+      }     
       setUsers(response.data.items);
       setSearch("");
     } catch (error) {
@@ -78,32 +64,33 @@ const Home: React.FC = () => {
               <h1>{user.login}</h1>
               <div className="data-info">
                 <p>
-                  Profile: <span>{user.url}</span>
+                  Profile: <a href={user.html_url} target="_blank" rel="noopener noreferrer">{user.html_url}</a>
                 </p>
                 <p>
-                  Repository: <span>{user.repos_url}</span>
+                  Repository: <a href={user.repos_url} target="_blank" rel="noopener noreferrer">{user.repos_url}</a>
                 </p>
                 <p>
-                  Orgs: <span>{user.organizations_url}</span>
+                  Orgs: <a href={user.organizations_url} target="_blank" rel="noopener noreferrer">{user.organizations_url}</a>
                 </p>
                 <p>
                   Type: <span>{user.type}</span>
                 </p>
-                <Link to={`/${user.login}`} >Página do usuário </Link>
+                <Link className="interna" to={`/${user.login}`} >Página do usuário </Link>
               </div>
             </figcaption>
           </Box>
         ))}
+        <PagesButton> 
         {
         users.filter((_, idx) => idx % 5 === 0)
         .map((_, idx) => (
+          
           <button key={idx} type="button" onClick={() => handlePageChanging(idx)}>
             {idx + 1}
           </button>
         ))
-
-
         }
+        </PagesButton>
       </Container>
     </>
   );

@@ -2,6 +2,7 @@ export interface IUser {
     login: string;
     avatar_url: string;
     url: string;
+    html_url: string;
     id: string;
     repos_url: string;
     organizations_url: string;

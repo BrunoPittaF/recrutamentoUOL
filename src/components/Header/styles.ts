@@ -4,9 +4,12 @@ import colors from '../../Assets/styles/colors.json';
 export const HeaderBar = styled.div`
     padding: 20px;
     background-color: #116193;
-    h1{
+    display: flex;
+    justify-content: center;
+    a{
+        text-decoration: none;
         color: ${colors.titlePag};
-        text-align: center;
+        font-size: 3em;
     }
 
 `;

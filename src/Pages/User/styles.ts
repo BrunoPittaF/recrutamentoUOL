@@ -20,6 +20,9 @@ export const UserBox = styled.div`
     display: flex;
     height: 600px;
     margin-top: 40px;
+    @media screen and (max-width: 768px){
+        flex-direction: column;
+    }
 
 
 `;
@@ -29,11 +32,10 @@ export const UserContainer = styled.figure`
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 40%;
     padding: 20px;
     align-items: center;
     picture{
-        width: 70%;
+        width: 300px;
         img{
             width: 100%;
             border-radius: 100%;
@@ -42,9 +44,11 @@ export const UserContainer = styled.figure`
     figcaption{
         margin-top: 20px;
         text-align: center;
+        display: grid;
         p{
             margin: 10px 0px;
             font-weight: bold;
+            display: inline-grid;
             span{
                 font-weight: normal;
             }
@@ -58,6 +62,9 @@ export const RepoContainer = styled.div`
     grid-template-columns: repeat(2,1fr);
     grid-gap: 20px;
     padding: 20px;
+    @media screen and (max-width: 630px){
+    grid-template-columns: 1fr;
+    }
     .repository{
         background-color: #efefef;
         border-radius: 6px;
@@ -65,6 +72,10 @@ export const RepoContainer = styled.div`
         outline: none;
         width: 380px;
         padding: 10px;
+        @media screen and (max-width: 768px){
+            width: 300px;
+            justify-self: center;
+        }
         p{
             margin: 10px 0px;
             font-weight: bold;

@@ -3,12 +3,12 @@ import colors from '../../Assets/styles/colors.json';
 
 export const HeaderBar = styled.div`
     padding: 20px;
-    background-color: #116193;
+    background-color: ${colors.secondary};
     display: flex;
     justify-content: center;
     a{
         text-decoration: none;
-        color: ${colors.titlePag};
+        color: ${colors.primary};
         font-size: 3em;
     }
 

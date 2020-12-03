@@ -15,7 +15,7 @@ html,body{
 }
 
 body{
-    background: ${colors.background}
+    background: ${colors.primary}
 }
 `;
 

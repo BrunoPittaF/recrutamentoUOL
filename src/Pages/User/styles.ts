@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from '../../Assets/styles/colors.json';
 
 export const ButtonsContainer = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ export const ButtonsContainer = styled.div`
     font-size: 16px;
     cursor: pointer;
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-    background-color: #fff;
+    background-color: ${colors.primary};
   }
 `;
 
@@ -69,7 +70,7 @@ export const RepoContainer = styled.div`
     width: 380px;
     padding: 10px;
     border: 1px solid #dadce0;
-    background: #fff;
+    background: ${colors.primary};
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
     word-break: break-all;
     @media screen and (max-width: 768px) {
@@ -85,7 +86,7 @@ export const RepoContainer = styled.div`
     }
     a {
       text-decoration: none;
-      color: #0366d6;
+      color: ${colors.link};
       transition: filter 0.2s;
       &:hover {
         filter: brightness(75%);

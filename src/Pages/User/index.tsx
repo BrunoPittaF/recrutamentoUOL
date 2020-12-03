@@ -30,9 +30,11 @@ const User: React.FC = () => {
 
   async function listMoreVisited() {
     try {
-      const response = await api.get(`/users/${params.login}/starred/{owner}/{repo}`,{
+      const response = await api.get(`/users/${params.login}/starred/${params.owner}/${params.repos_url}`,{
+        headers:{
+        'Accept': 'application/vnd.github.v3+json'
+        },
         params: {
-          token: 'a09241048a6a34fdd23ffc7f98608ffbcf80ff45',
           owner: params.owner,
           repo: params.repos_url,
         },

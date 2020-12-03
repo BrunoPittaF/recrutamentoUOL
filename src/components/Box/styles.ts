@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from '../../Assets/styles/colors.json';
 
 export const UserBox = styled.figure`
   display: flex;
@@ -27,11 +28,11 @@ export const UserBox = styled.figure`
     flex-direction: column;
     width: 100%;
     h1 {
-      background-color: #116193;
+      background-color: ${colors.secondary};
       width: 100%;
       padding: 10px 20px;
       margin: 0px;
-      color: #fff;
+      color: ${colors.primary};
       font-weight: 100;
     }
     .data-info {
@@ -55,7 +56,7 @@ export const UserBox = styled.figure`
         a{
           text-decoration: none;
           font-weight: 400;
-          color: #0366d6;
+          color: ${colors.link};
           transition: filter 0.2s;
         &:hover{
           filter: brightness(75%); 
@@ -68,10 +69,10 @@ export const UserBox = styled.figure`
         position: absolute;
         right: 30px;
         bottom: 10px;
-        color: #fff;
+        color: ${colors.primary};
         border-radius: 6px;
         padding: 5px;
-        background: #116193;
+        background: ${colors.secondary};
         border: none;
         transition: filter 0.2s;
         &:hover{

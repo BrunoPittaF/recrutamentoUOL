@@ -56,7 +56,7 @@ const Home: React.FC = () => {
             <h1>{user.login}</h1>
             <div className="data-info">
               <p>
-                Profile:{" "}
+                Profile:
                 <a
                   href={user.html_url}
                   target="_blank"
@@ -66,7 +66,7 @@ const Home: React.FC = () => {
                 </a>
               </p>
               <p>
-                Repository:{" "}
+                Repository:
                 <a
                   href={user.repos_url}
                   target="_blank"
@@ -76,7 +76,7 @@ const Home: React.FC = () => {
                 </a>
               </p>
               <p>
-                Orgs:{" "}
+                Orgs:
                 <a
                   href={user.organizations_url}
                   target="_blank"
@@ -89,25 +89,15 @@ const Home: React.FC = () => {
                 Type: <span>{user.type}</span>
               </p>
               <Link className="interna" to={`/${user.login}`}>
-                Página do usuário{" "}
+                Visitar perfil
               </Link>
             </div>
           </figcaption>
         </Box>
       ))}
       <PagesButton>
-        {/*users
-            .filter((_, idx) => idx % 5 === 0)
-            .map((_, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => handlePageChanging(idx)}
-              >
-                {idx + 1}
-              </button>
-            ))*/}
-        <button
+        {users.length>0 &&
+          <button
           type="button"
           onClick={() => {
             setPage(page + 1);
@@ -115,6 +105,7 @@ const Home: React.FC = () => {
         >
           Mais resultados
         </button>
+        }
       </PagesButton>
     </Container>
   );

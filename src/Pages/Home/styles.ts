@@ -27,13 +27,12 @@ export const PagesButton = styled.div`
         margin-bottom: 20px;
         button{
             margin: 0px 5px;
-            border: none;
             border: 1px solid #116193;
             padding: 5px 10px;
-            border-radius: 50%;
             cursor: pointer;
             outline: none;
             transition: filter 0.2s;
+            border-radius: 6px;
         &:hover{
         filter: brightness(85%);
         }

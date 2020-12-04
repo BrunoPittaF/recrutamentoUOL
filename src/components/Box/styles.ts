@@ -65,7 +65,7 @@ export const UserBox = styled.figure`
       }
       .interna {
         text-decoration: none;
-        font-size: 18px;
+        font-size: 14px;
         position: absolute;
         right: 30px;
         bottom: 10px;
